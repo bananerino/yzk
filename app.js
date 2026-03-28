@@ -42,6 +42,7 @@ const transliterationMap = {
   y: "ы",
   z: "з",
   "'": "ь",
+  "‘": "ь",
   '"': "ъ",
 };
 
