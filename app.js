@@ -111,6 +111,7 @@ let filteredWords = [];
 let currentWord = null;
 let hintsRevealed = 0;
 let activeFilter = "all";
+let currentMode = "quiz"; // "quiz" or "cards"
 
 // Load data from finalData.json
 async function loadData() {
@@ -378,6 +379,106 @@ function showUsage() {
 }
 
 // ============================================================
+// CARDS MODE FUNCTIONS
+// ============================================================
+
+function displayCard(word) {
+  currentWord = word;
+
+  // Display the word
+  document.getElementById("cardWord").textContent = word.word;
+
+  // Display word type
+  const cardType = document.getElementById("cardType");
+  cardType.innerHTML = `<span style="display: inline-block; background: #667eea; color: white; padding: 8px 18px; border-radius: 20px; font-size: 0.9em; font-weight: 600; text-transform: capitalize;">${word.type}</span>`;
+
+  // Display translations
+  const translationsList = document.getElementById("cardTranslations");
+  translationsList.innerHTML = "";
+
+  if (word.translationInfo && word.translationInfo.translations) {
+    word.translationInfo.translations.forEach((trans) => {
+      const li = document.createElement("li");
+      li.textContent = trans.translation;
+      if (trans.exampleEn) {
+        li.textContent += ` (e.g., ${trans.exampleEn})`;
+      }
+      translationsList.appendChild(li);
+    });
+  }
+
+  // Display usage if available
+  const usageSection = document.getElementById("cardUsageSection");
+  if (word.usage) {
+    document.getElementById("cardUsage").textContent = word.usage;
+    usageSection.style.display = "block";
+  } else {
+    usageSection.style.display = "none";
+  }
+
+  // Display verb forms if it's a verb
+  const verbSection = document.getElementById("cardVerbSection");
+  if (word.type === "verb" && word.verbForms) {
+    const imperfectiveForm = word.verbForms.find(
+      (f) => f.form === "imperfective",
+    );
+    const perfectiveForm = word.verbForms.find(
+      (f) => f.form === "perfective" || f.form === "both",
+    );
+
+    let imperfectiveText = imperfectiveForm
+      ? imperfectiveForm.text.split(";")[0].trim()
+      : "—";
+    let perfectiveText = perfectiveForm
+      ? perfectiveForm.text.split(";")[0].trim()
+      : "—";
+
+    document.getElementById("cardImperfective").textContent = imperfectiveText;
+    document.getElementById("cardPerfective").textContent = perfectiveText;
+
+    verbSection.style.display = "block";
+  } else {
+    verbSection.style.display = "none";
+  }
+}
+
+function loadNewCard() {
+  const word = getRandomWord();
+  if (word) {
+    displayCard(word);
+  }
+}
+
+// ============================================================
+// MODE SWITCHING
+// ============================================================
+
+function switchMode(mode) {
+  currentMode = mode;
+
+  const quizSection = document.querySelector(".quiz-section");
+  const cardsSection = document.querySelector(".cards-section");
+
+  // Update button states
+  document.querySelectorAll(".mode-btn").forEach((btn) => {
+    btn.classList.remove("active");
+    if (btn.dataset.mode === mode) {
+      btn.classList.add("active");
+    }
+  });
+
+  if (mode === "quiz") {
+    quizSection.style.display = "flex";
+    cardsSection.style.display = "none";
+    loadNewWord();
+  } else if (mode === "cards") {
+    quizSection.style.display = "none";
+    cardsSection.style.display = "flex";
+    loadNewCard();
+  }
+}
+
+// ============================================================
 // EVENT LISTENERS
 // ============================================================
 
@@ -428,6 +529,22 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
     const filterType = btn.dataset.filter;
     applyFilter(filterType);
   });
+});
+
+// Add mode button listeners
+document.querySelectorAll(".mode-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const mode = btn.dataset.mode;
+    switchMode(mode);
+  });
+});
+
+// Keyboard event listener for cards mode
+document.addEventListener("keydown", (e) => {
+  if (currentMode === "cards" && (e.code === "Space" || e.code === "Enter")) {
+    e.preventDefault();
+    loadNewCard();
+  }
 });
 
 // ============================================================

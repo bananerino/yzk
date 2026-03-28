@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Russian Word Quiz</title>
+    <title>Orosz</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="quiz">Kvíz</button>
+        <button class="mode-btn" data-mode="cards">Kártyák</button>
+      </div>
+
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">Összes</button>
         <button class="filter-btn" data-filter="verb">Ige</button>
@@ -70,6 +75,39 @@
         <div class="usage-section" id="usageSection" style="display: none">
           <h3>Usage:</h3>
           <p class="usage" id="usage"></p>
+        </div>
+      </div>
+
+      <div class="cards-section" style="display: none">
+        <div class="card">
+          <div class="card-word" id="cardWord"></div>
+          <div class="card-type" id="cardType"></div>
+          
+          <div class="card-translations">
+            <h4>Translations:</h4>
+            <ul class="card-translations-list" id="cardTranslations"></ul>
+          </div>
+
+          <div class="card-usage" id="cardUsageSection" style="display: none">
+            <h4>Usage:</h4>
+            <p class="card-usage-text" id="cardUsage"></p>
+          </div>
+
+          <div class="card-verb-forms" id="cardVerbSection" style="display: none">
+            <h4>Verb Forms:</h4>
+            <div class="verb-forms-display">
+              <div class="verb-form">
+                <span class="verb-label">Imperfective:</span>
+                <span class="verb-value" id="cardImperfective"></span>
+              </div>
+              <div class="verb-form">
+                <span class="verb-label">Perfective:</span>
+                <span class="verb-value" id="cardPerfective"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-hint">Press <strong>Space</strong> or <strong>Enter</strong> for next word</div>
         </div>
       </div>
     </div>
