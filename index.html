@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Russian Word Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Russian Word Quiz</h1>
+
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Összes</button>
+        <button class="filter-btn" data-filter="verb">Ige</button>
+        <button class="filter-btn" data-filter="noun">Főnév</button>
+        <button class="filter-btn" data-filter="adjective">Melléknév</button>
+        <button class="filter-btn" data-filter="other">Egyéb</button>
+      </div>
+
+      <div class="quiz-section">
+        <div class="word-display">
+          <div class="word" id="word"></div>
+          <div class="meta">
+            <span class="type" id="wordType"></span>
+          </div>
+        </div>
+
+        <div class="translations-section">
+          <h3>Translations:</h3>
+          <ul class="translations" id="translations"></ul>
+        </div>
+
+        <div class="usage-section" id="usageSection" style="display: none">
+          <h3>Usage:</h3>
+          <p class="usage" id="usage"></p>
+        </div>
+
+        <form id="answerForm">
+          <div class="form-group">
+            <label for="answer1">Szó</label>
+            <input
+              type="text"
+              id="answer1"
+              placeholder="Type Latin characters (e.g., zhivoy, koshka)"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-group" id="verbForm2Group" style="display: none">
+            <label for="answer2">Befejezett:</label>
+            <input
+              type="text"
+              id="answer2"
+              placeholder="Befejezett"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary">Check Answer</button>
+            <button type="button" class="btn btn-secondary" id="hintBtn">
+              Hint
+            </button>
+            <button type="button" class="btn btn-secondary" id="newWordBtn">
+              New Word
+            </button>
+          </div>
+        </form>
+
+        <div class="feedback" id="feedback"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
