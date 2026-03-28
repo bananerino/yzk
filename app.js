@@ -552,5 +552,16 @@ document.addEventListener("keydown", (e) => {
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Load data
   loadData();
+
+  // Set up card click/tap listener
+  const cardElement = document.querySelector(".card");
+  if (cardElement) {
+    cardElement.addEventListener("click", () => {
+      if (currentMode === "cards") {
+        loadNewCard();
+      }
+    });
+  }
 });
