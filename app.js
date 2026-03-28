@@ -183,14 +183,9 @@ function displayWord(word) {
     });
   }
 
-  // Display usage (if present)
+  // Hide usage until answer is submitted
   const usageSection = document.getElementById("usageSection");
-  if (word.usage) {
-    document.getElementById("usage").textContent = word.usage;
-    usageSection.style.display = "block";
-  } else {
-    usageSection.style.display = "none";
-  }
+  usageSection.style.display = "none";
 
   // Handle verb forms
   const verbForm2Group = document.getElementById("verbForm2Group");
@@ -303,12 +298,14 @@ function checkAnswer() {
       feedbackElement.innerHTML = "<div>✓ Correct!</div>";
       answer1Element.disabled = true;
       document.querySelector('button[type="submit"]').disabled = true;
+      showUsage();
     } else {
       feedbackElement.className = "feedback incorrect";
       feedbackElement.innerHTML = `
                 <div>✗ Incorrect</div>
                 <div class="correct-answer">Correct answer: ${currentWord.word}</div>
             `;
+      showUsage();
     }
     return;
   }
@@ -352,13 +349,24 @@ function checkAnswer() {
       answer1Element.disabled = true;
       answer2Element.disabled = true;
       document.querySelector('button[type="submit"]').disabled = true;
+      showUsage();
     } else {
       feedbackElement.className = "feedback incorrect";
       feedbackElement.innerHTML = `
                 <div>✗ Incorrect</div>
                 <div class="correct-answer">Correct answers: ${correctImperfective} / ${correctPerfective}</div>
             `;
+      showUsage();
     }
+  }
+}
+
+// Show usage section
+function showUsage() {
+  const usageSection = document.getElementById("usageSection");
+  if (currentWord && currentWord.usage) {
+    document.getElementById("usage").textContent = currentWord.usage;
+    usageSection.style.display = "block";
   }
 }
 
@@ -398,12 +406,6 @@ function updatePreview(inputId, previewId) {
 // Initialize previews
 updatePreview("answer1", "preview1");
 updatePreview("answer2", "preview2");
-
-// Clear hints button
-document.getElementById("clearHintBtn").addEventListener("click", () => {
-  hintsRevealed = 0;
-  updateWordDisplay();
-});
 
 // Show word button
 document.getElementById("showWordBtn").addEventListener("click", () => {

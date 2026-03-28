@@ -8,8 +8,6 @@
   </head>
   <body>
     <div class="container">
-      <h1>Russian Word Quiz</h1>
-
       <div class="filter-buttons">
         <button class="filter-btn active" data-filter="all">Összes</button>
         <button class="filter-btn" data-filter="verb">Ige</button>
@@ -24,6 +22,7 @@
           <div class="meta">
             <span class="type" id="wordType"></span>
           </div>
+          <div class="feedback" id="feedback"></div>
         </div>
 
         <div class="translations-section">
@@ -55,16 +54,13 @@
           </div>
 
           <div class="button-group">
-            <button type="submit" class="btn btn-primary">Check Answer</button>
             <button type="button" class="btn btn-secondary" id="hintBtn">
               Hint
-            </button>
-            <button type="button" class="btn btn-secondary" id="clearHintBtn">
-              Clear Hint
             </button>
             <button type="button" class="btn btn-secondary" id="showWordBtn">
               Show Word
             </button>
+            <button type="submit" class="btn btn-primary">Check</button>
             <button type="button" class="btn btn-secondary" id="newWordBtn">
               New Word
             </button>
@@ -75,8 +71,6 @@
           <h3>Usage:</h3>
           <p class="usage" id="usage"></p>
         </div>
-
-        <div class="feedback" id="feedback"></div>
       </div>
     </div>
 
