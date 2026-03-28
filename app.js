@@ -405,6 +405,14 @@ document.getElementById("clearHintBtn").addEventListener("click", () => {
   updateWordDisplay();
 });
 
+// Show word button
+document.getElementById("showWordBtn").addEventListener("click", () => {
+  if (currentWord) {
+    hintsRevealed = currentWord.word.length;
+    updateWordDisplay();
+  }
+});
+
 // Add filter button listeners
 document.querySelectorAll(".filter-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
