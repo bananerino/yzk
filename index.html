@@ -45,6 +45,7 @@
               placeholder="Type Latin characters (e.g., zhivoy, koshka)"
               autocomplete="off"
             />
+            <div class="preview" id="preview1"></div>
           </div>
 
           <div class="form-group" id="verbForm2Group" style="display: none">
@@ -55,12 +56,16 @@
               placeholder="Befejezett"
               autocomplete="off"
             />
+            <div class="preview" id="preview2"></div>
           </div>
 
           <div class="button-group">
             <button type="submit" class="btn btn-primary">Check Answer</button>
             <button type="button" class="btn btn-secondary" id="hintBtn">
               Hint
+            </button>
+            <button type="button" class="btn btn-secondary" id="clearHintBtn">
+              Clear Hint
             </button>
             <button type="button" class="btn btn-secondary" id="newWordBtn">
               New Word

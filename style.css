@@ -177,6 +177,14 @@ h3 {
   color: #aaa;
 }
 
+.preview {
+  font-size: 0.85em;
+  color: #667eea;
+  margin-top: 6px;
+  font-family: Georgia, serif;
+  min-height: 16px;
+}
+
 .button-group {
   display: flex;
   gap: 12px;

@@ -41,6 +41,8 @@ const transliterationMap = {
   x: "х",
   y: "ы",
   z: "з",
+  "'": "ь",
+  '"': "ъ",
 };
 
 // Convert Latin input to Cyrillic
@@ -157,6 +159,9 @@ function getRandomWord() {
 function displayWord(word) {
   currentWord = word;
 
+  // Reset hints BEFORE displaying
+  hintsRevealed = 0;
+
   // Display the Cyrillic word (with hints hidden initially)
   updateWordDisplay();
 
@@ -203,9 +208,6 @@ function displayWord(word) {
     answer1Label.textContent = "Enter the word:";
     answer1.placeholder = "Type Latin characters (e.g., zhivoy, koshka)";
   }
-
-  // Reset hints
-  hintsRevealed = 0;
 
   // Clear inputs and feedback
   answer1.value = "";
@@ -379,6 +381,28 @@ document.getElementById("newWordBtn").addEventListener("click", () => {
   answer1.disabled = false;
   answer2.disabled = false;
   loadNewWord();
+});
+
+// Add real-time transliteration preview
+function updatePreview(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+
+  input.addEventListener("keyup", () => {
+    const latinText = input.value;
+    const cyrillicText = latinToCyrillic(latinText);
+    preview.textContent = cyrillicText;
+  });
+}
+
+// Initialize previews
+updatePreview("answer1", "preview1");
+updatePreview("answer2", "preview2");
+
+// Clear hints button
+document.getElementById("clearHintBtn").addEventListener("click", () => {
+  hintsRevealed = 0;
+  updateWordDisplay();
 });
 
 // Add filter button listeners
