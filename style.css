@@ -281,24 +281,132 @@ h3 {
 }
 
 @media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
   .container {
-    padding: 20px;
+    padding: 15px;
+    border-radius: 8px;
   }
 
   h1 {
-    font-size: 1.8em;
-    margin-bottom: 30px;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+
+  .filter-buttons {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 0.8em;
+  }
+
+  h3 {
+    font-size: 0.95em;
+    margin-bottom: 8px;
+  }
+
+  .quiz-section {
+    gap: 12px;
+  }
+
+  .word-display {
+    padding: 12px;
   }
 
   .word {
-    font-size: 2.2em;
+    font-size: 1.8em;
+    margin-bottom: 6px;
+  }
+
+  .meta {
+    gap: 10px;
+  }
+
+  .type {
+    padding: 5px 12px;
+    font-size: 0.8em;
+  }
+
+  .translations-section {
+    gap: 6px;
+  }
+
+  .translations {
+    gap: 6px;
+  }
+
+  .translations li {
+    padding: 8px 10px;
+    font-size: 0.85em;
+  }
+
+  .form-group {
+    gap: 6px;
+  }
+
+  .form-group label {
+    font-size: 0.85em;
+  }
+
+  .form-group input {
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+
+  .preview {
+    font-size: 0.8em;
+    margin-top: 4px;
+  }
+
+  .button-group {
+    gap: 5px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 8px;
+    font-size: 0.7em;
+    flex: 1 1 calc(50% - 2.5px);
+    min-width: 80px;
   }
 
   .btn-primary {
     flex: 1 1 100%;
   }
 
-  .btn-secondary {
-    flex: 1 1 48%;
+  .btn-primary:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .feedback {
+    padding: 10px;
+    margin-top: 10px;
+    gap: 6px;
+    font-size: 0.9em;
+  }
+
+  .correct-answer {
+    padding: 5px 8px;
+    font-size: 0.85em;
+    margin-top: 4px;
+  }
+
+  .usage-section {
+    padding: 12px;
+  }
+
+  .usage {
+    font-size: 0.85em;
+    line-height: 1.5;
   }
 }

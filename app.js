@@ -49,6 +49,11 @@ const transliterationMap = {
 function latinToCyrillic(latinText) {
   if (!latinText) return "";
 
+  // Normalize smart quotes to regular ASCII quotes
+  latinText = latinText
+    .replace(/[''"]/g, "'") // Various single quotes to ASCII single quote
+    .replace(/["""]/g, '"'); // Various double quotes to ASCII double quote
+
   let cyrillic = "";
   let i = 0;
   latinText = latinText.toLowerCase();
