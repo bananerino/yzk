@@ -44,6 +44,7 @@ const transliterationMap = {
   "'": "ь",
   "‘": "ь",
   '"': "ъ",
+  "“": "ъ",
 };
 
 // Convert Latin input to Cyrillic
